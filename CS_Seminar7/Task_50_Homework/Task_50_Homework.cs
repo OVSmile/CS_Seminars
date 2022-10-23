@@ -7,12 +7,6 @@ Console.Clear();
 int rows = new Random().Next(0, 10);
 int columns = new Random().Next(0, 10);
 
-// Console.Write("Максимальное колличество строк в массиве: ");
-// int UserMinValue = int.Parse(Console.ReadLine() ?? "");
-
-// Console.Write("Минимальное колличество строк в массиве: ");
-// int UserMaxValue = int.Parse(Console.ReadLine() ?? "");
-
 int[,] Array = FillArray(rows, columns, 0, 10);
 PrintArray(Array);
 
@@ -23,9 +17,9 @@ Console.Write("Введите номер столбца искомого эле�
 int UserColomn = int.Parse(Console.ReadLine() ?? "");
 
 if (rows < UserRow || columns < UserColomn) 
-    Console.WriteLine($"В массиве нет числа распложеннго на {UserRow} строке и {UserColomn} столбце");
+    Console.WriteLine($"В массиве нет числа распложенного на {UserRow}-ой строке, {UserColomn}-го столбца");
 else
-    Console.WriteLine($"Значение числа распложеннго на {UserRow} строке и {UserColomn} столбце равно {Array[UserRow - 1, UserColomn - 1]}");
+    Console.WriteLine($"Значение числа распложенного на {UserRow}-ой строке, {UserColomn}-го столбца, равно {Array[UserRow - 1, UserColomn - 1]}");
 
 //--------------------------------------------------------------------------------------------------------------
 
