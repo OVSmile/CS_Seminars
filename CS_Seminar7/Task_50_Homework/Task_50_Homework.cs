@@ -4,10 +4,16 @@ Console.Clear();
 
 
 
-int rows = new Random().Next(5, 10);
-int colimns = new Random().Next(5, 10);
+int rows = new Random().Next(0, 10);
+int columns = new Random().Next(0, 10);
 
-int[,] Array = FillArray(rows, colimns, 0, 100);
+// Console.Write("Максимальное колличество строк в массиве: ");
+// int UserMinValue = int.Parse(Console.ReadLine() ?? "");
+
+// Console.Write("Минимальное колличество строк в массиве: ");
+// int UserMaxValue = int.Parse(Console.ReadLine() ?? "");
+
+int[,] Array = FillArray(rows, columns, 0, 10);
 PrintArray(Array);
 
 Console.Write("Введите номер строки искомого элемента: ");
@@ -16,10 +22,10 @@ int UserRow = int.Parse(Console.ReadLine() ?? "");
 Console.Write("Введите номер столбца искомого элемента: ");
 int UserColomn = int.Parse(Console.ReadLine() ?? "");
 
-int UserNumber = (GetUserValue(Array, UserRow, UserColomn));
-
-if(UserNumber >= 0) Console.WriteLine($"Значение числа распложеннго на {rows} строке и {colimns} столбце равно {UserNumber}");
-else Console.WriteLine($"В массиве нет числа распложеннго на {rows} строке и {colimns} столбце");
+if (rows < UserRow || columns < UserColomn) 
+    Console.WriteLine($"В массиве нет числа распложеннго на {UserRow} строке и {UserColomn} столбце");
+else
+    Console.WriteLine($"Значение числа распложеннго на {UserRow} строке и {UserColomn} столбце равно {Array[UserRow - 1, UserColomn - 1]}");
 
 //--------------------------------------------------------------------------------------------------------------
 
@@ -31,7 +37,7 @@ int[,] FillArray(int m, int n, int minValue, int maxValue)
     {
         for (int j = 0; j < n; j++)
         {
-            result[i, j] = new Random().Next(minValue, maxValue + 1); 
+            result[i, j] = new Random().Next(minValue, maxValue + 1);
         }
     }
     return result;
@@ -47,21 +53,4 @@ void PrintArray(int[,] arr)
         }
         Console.WriteLine();
     }
-}
-
-int GetUserValue(int[,] array, int row, int colimn)
-{
-    int value;
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            if(i == row && j == colimn)
-            {
-               value = array[i, j]; 
-               return value;
-            } 
-        }
-    }
-    return -101;
 }
