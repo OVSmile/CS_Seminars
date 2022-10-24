@@ -8,11 +8,11 @@ int rows = int.Parse(Console.ReadLine() ?? "");
 Console.Write("Введите количество столбцов массива: ");
 int columns = int.Parse(Console.ReadLine() ?? "");
 
-int[,] Array = GetArray(rows, columns, 0, 10);
+int[,] Array = GetArray(rows, columns, 0, 10); 
 PrintArray(Array);
+double[] ArithmeticMeanColumns = GetArithmeticMeanColumns(Array, rows, columns);
 
-Console.Write($"Среднее арифметическое значение элементов каждого столбца: ");
-GetArithmeticMeanColumns(Array, rows, columns);
+Console.Write($"Среднее арифметическое значение элементов каждого столбца: {String.Join("; ", ArithmeticMeanColumns)}.");
 
 //---------------------------------------------------------------------------
 
@@ -41,25 +41,18 @@ void PrintArray(int[,] array)
     }
 }
 
-void GetArithmeticMeanColumns(int[,] array, int rows, int columns)
+double[] GetArithmeticMeanColumns(int[,] array, int rows, int columns)
 {
+    double[]  ArithmeticMeanColumns = new double[columns];
     double sum = 0;
-    for (int i = 0; i < array.GetLength(1) - 1; i++)
+    for (int i = 0; i < array.GetLength(1); i++)
     {
         for (int j = 0; j < array.GetLength(0); j++)
         {
             sum += array[j, i];
         }
-        Console.Write($"{Math.Round((sum / rows), 1)}; ");
+        ArithmeticMeanColumns[i] = Math.Round(sum / rows, 1);
         sum = 0;
     }
-
-    for (int i = columns - 1; i < array.GetLength(1); i++)
-    {
-        for (int j = 0; j < array.GetLength(0); j++)
-        {
-            sum += array[j, i];
-        }
-        Console.WriteLine($"{Math.Round((sum / rows), 1)}.");
-    }
+    return ArithmeticMeanColumns;
 }
