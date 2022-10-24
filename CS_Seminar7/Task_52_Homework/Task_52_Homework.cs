@@ -10,7 +10,7 @@ int columns = int.Parse(Console.ReadLine() ?? "");
 
 int[,] Array = GetArray(rows, columns, 0, 10); 
 PrintArray(Array);
-double[] ArithmeticMeanColumns = GetArithmeticMeanColumns(Array, rows, columns);
+double[] ArithmeticMeanColumns = GetArithmeticMeanColumns(Array);
 
 Console.Write($"Среднее арифметическое значение элементов каждого столбца: {String.Join("; ", ArithmeticMeanColumns)}.");
 
@@ -41,9 +41,9 @@ void PrintArray(int[,] array)
     }
 }
 
-double[] GetArithmeticMeanColumns(int[,] array, int rows, int columns)
+double[] GetArithmeticMeanColumns(int[,] array)
 {
-    double[]  ArithmeticMeanColumns = new double[columns];
+    double[]  ArithmeticMeanColumns = new double[array.GetLength(1)];
     double sum = 0;
     for (int i = 0; i < array.GetLength(1); i++)
     {
@@ -51,7 +51,7 @@ double[] GetArithmeticMeanColumns(int[,] array, int rows, int columns)
         {
             sum += array[j, i];
         }
-        ArithmeticMeanColumns[i] = Math.Round(sum / rows, 1);
+        ArithmeticMeanColumns[i] = Math.Round(sum / array.GetLength(0), 1);
         sum = 0;
     }
     return ArithmeticMeanColumns;
